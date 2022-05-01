@@ -81,6 +81,14 @@ if (debug != "false") {
   })
 }
 
+app.use(express.static('./public'));
+app.get("/app/", (req, res, next) =>{
+  res.statusCode = 200
+  res.statusMessage= 'Success ' + res.statusCode
+  res.writeHead(res.statusCode, {'Content-Type' : 'text/plain'})
+  res.end(res.statusCode + ' ' + res.statusMessage) 
+})
+
 app.get('/app/error', (req, res) => {
   throw new Error("Error test")
 })
